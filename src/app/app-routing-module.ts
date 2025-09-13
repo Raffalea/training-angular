@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { SampleHalaman } from './sample-halaman/sample-halaman';
 import { Products } from './products/products';
 import { Home } from './home/home';
+import { ProductForm } from './products/product-form/product-form';
 
 const routes: Routes = [
     {path: 'sample-halaman', component: SampleHalaman},
     {path: '', component: Home},
-    {path: 'products', component: Products},
+    {path: 'product', component: Products},
+    {path: 'product/form', component: ProductForm},
 ];
 
 @NgModule({
@@ -15,4 +17,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
- 

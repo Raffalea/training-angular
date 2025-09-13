@@ -18,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Home } from './home/home';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductForm } from './products/product-form/product-form';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ProductForm } from './products/product-form/product-form';
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

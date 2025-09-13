@@ -1,1 +1,53 @@
-<p>product-form works!</p>
+<div class="container mt-4">
+  <h2 class="mb-3">Tambah Produk Baru</h2>
+
+  <form [formGroup]="form">
+
+
+    <div class="mb-3">
+      <label for="product_code" class="form-label">Kode Produk</label>
+      <input type="text" formControlName="PRODUCT_CODE" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['PRODUCT_CODE'].errors }" />
+
+      <div *ngIf="submitted && f['PRODUCT_CODE'].errors" class="invalid-feedback">
+        <div *ngIf="f['PRODUCT_CODE'].errors['required']">Kode Produk wajib diisi.</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="product_name" class="form-label">Nama Produk</label>
+      <input type="text" formControlName="PRODUCT_NAME" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['PRODUCT_NAME'].errors }" />
+
+      <div *ngIf="submitted && f['PRODUCT_NAME'].errors" class="invalid-feedback">
+        <div *ngIf="f['PRODUCT_NAME'].errors['required']">Nama Produk wajib diisi.</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="category" class="form-label">Kategori</label>
+      <input type="text" formControlName="CATEGORY" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['CATEGORY'].errors }" />
+
+      <div *ngIf="submitted && f['CATEGORY'].errors" class="invalid-feedback">
+        <div *ngIf="f['CATEGORY'].errors['required']">Kategori wajib diisi.</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Harga</label>
+      <input type="number" formControlName="PRICE" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['PRICE'].errors }" />
+
+      <div *ngIf="submitted && f['PRICE'].errors" class="invalid-feedback">
+        <div *ngIf="f['PRICE'].errors['required']">Harga wajib diisi.</div>
+        <div *ngIf="f['PRICE'].errors['min']">Harga tidak boleh minus.</div>
+      </div>
+    </div>
+
+    <button type="button" (click)="onSubmit()" [disabled]="loading" class="btn btn-primary">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+      Simpan
+    </button>
+  </form>
+</div>
