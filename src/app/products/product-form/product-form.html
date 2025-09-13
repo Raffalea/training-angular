@@ -45,9 +45,16 @@
       </div>
     </div>
 
-    <button type="button" (click)="onSubmit()" [disabled]="loading" class="btn btn-primary">
-      <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
-      Simpan
-    </button>
+    <div class="d-flex justify-content-between mt-4">
+      <button type="button" [routerLink]="['/product']" [disabled]="loading" class="btn btn-secondary">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+        Kembali
+      </button>
+
+      <button type="button" (click)="onSubmit()" [disabled]="loading" class="btn btn-primary">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+        Simpan
+      </button>
+    </div>
   </form>
 </div>

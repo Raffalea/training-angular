@@ -48,6 +48,7 @@ export class ProductForm {
         .pipe(first())
         .subscribe({
             next: () => {
+                alert('Data saved successfully!');
                 this.router.navigate(['/product']);
             },
             error: err => {
