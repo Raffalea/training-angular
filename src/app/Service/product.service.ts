@@ -17,4 +17,19 @@ export class ProductService {
     const options = { headers: headers };
     return this.http.post(this.apiUrl+"/CreateData", model, options);
   }
+
+  getById(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl + "/GetById"}/${id}`);
+  }
+
+  updateData(id: string, model: any): Observable<any> {
+    const headers = new HttpHeaders ({'Content-Type': 'application/json' });
+    const options = { headers: headers };
+    return this.http.put(`${this.apiUrl + "/UpdateData"}/${id}`, model, options);
+  }
+
+  deleteData(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl + "/DeleteData"}/${id}`);
+  }
+
 }

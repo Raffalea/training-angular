@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from '../Service/product.service';
 @Component({
   selector: 'app-products',
@@ -11,6 +12,7 @@ import { ProductService } from '../Service/product.service';
 export class Products {
  faPlus = faPlus;
   faPencil = faPencil;
+  faTrash = faTrash;
   products: any[] = [];
   constructor(
   private productService: ProductService
@@ -30,5 +32,26 @@ export class Products {
   //   { code: 'P005', name: 'Mouse Wireless', category: 'Aksesoris', price: 250000, stock: 50 }
   // ];
 
+  deleteProduct(id: string): void {
+    if (confirm('Are you sure to delete this record?')) {
+      this.productService.deleteData(id).subscribe({
+        next: () => {
+          alert('Product deleted successfully.');
+          this.ngOnInit(); // Refresh the product list
+        },
+        error: (err) => {
+          if (err.status === 204) {
+            alert('Data berhasil dihapus.');
+            this.ngOnInit(); // Refresh the product list
+          } else {
+            alert('Gagal menghapus data. Silakan coba lagi.');
+            console.error('Error deleting product', err);
+            this.ngOnInit(); // Refresh the product list
+          }
+        }
+      });
+    }
 
+
+  }
 }

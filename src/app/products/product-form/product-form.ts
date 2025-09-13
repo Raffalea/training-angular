@@ -14,6 +14,9 @@ export class ProductForm {
   form!: FormGroup;
   submitted = false;
   loading = false;
+  id!: string;
+  isAddMode!: boolean;
+
   constructor(
     private productService: ProductService,
     private formBuilder: FormBuilder,
@@ -22,6 +25,8 @@ export class ProductForm {
   ) {}
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.isAddMode = !this.id;
     this.form = this.formBuilder.group({
       PRODUCT_CODE: ['',],
       PRODUCT_NAME: ['', Validators.required],
@@ -29,6 +34,13 @@ export class ProductForm {
       PRICE: ['', [Validators.required, Validators.min(0)]]
     });
 
+    if (!this.isAddMode) {
+        this.productService.getById(this.id)
+            .pipe(first())
+            .subscribe(x => {
+          this.form.patchValue(x);
+        });
+      }
   }
 
   get f() { return this.form.controls; }
@@ -39,7 +51,11 @@ export class ProductForm {
         return;
     }
     this.loading = true;
-    this.createData();
+    if (this.isAddMode) {
+        this.createData();
+    } else {
+         this.updateData();
+    }
 
   }
 
@@ -58,4 +74,21 @@ export class ProductForm {
             }
         });
   }
+
+  private updateData(): void{
+    this.productService.updateData(this.id, this.form.value)
+        .pipe(first())
+        .subscribe({
+            next: () => {
+                alert('Data berhasil diperbarui!');
+                this.router.navigate(['/product']);
+            },
+            error: err => {
+                alert('Gagal memperbarui data.');
+                console.error(err);
+                this.loading = false;
+            }
+        });
+  }
+
 }
