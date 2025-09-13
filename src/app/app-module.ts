@@ -46,7 +46,7 @@ import { ProductForm } from './products/product-form/product-form';
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideZonelessChangeDetection()
+    // provideZonelessChangeDetection()
   ],
   bootstrap: [App]
 })

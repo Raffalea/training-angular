@@ -12,6 +12,8 @@ import { first } from 'rxjs/operators';
 })
 export class ProductForm {
   form!: FormGroup;
+  submitted = false;
+  loading = false;
   constructor(
     private productService: ProductService,
     private formBuilder: FormBuilder,
@@ -27,5 +29,32 @@ export class ProductForm {
       PRICE: ['', [Validators.required, Validators.min(0)]]
     });
 
+  }
+
+  get f() { return this.form.controls; }
+
+  onSubmit(): void {
+    this.submitted = true;
+    if (this.form.invalid) {
+        return;
+    }
+    this.loading = true;
+    this.createData();
+
+  }
+
+  private createData(): void{
+    this.productService.createData(this.form.value)
+        .pipe(first())
+        .subscribe({
+            next: () => {
+                this.router.navigate(['/product']);
+            },
+            error: err => {
+                alert('There was an error!');
+                console.error(err);
+                this.loading = false;
+            }
+        });
   }
 }
