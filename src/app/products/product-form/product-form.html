@@ -26,8 +26,13 @@
 
     <div class="mb-3">
       <label for="category" class="form-label">Kategori</label>
-      <input type="text" formControlName="CATEGORY" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f['CATEGORY'].errors }" />
+      <select formControlName="CATEGORY" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['CATEGORY'].errors }">
+        <option value="" disabled>-- Pilih Kategori --</option>
+        <option *ngFor="let category of categories" [value]="category.CATEGORY_CODE">
+          {{ category.CATEGORY_NAME }}
+        </option>
+      </select>
 
       <div *ngIf="submitted && f['CATEGORY'].errors" class="invalid-feedback">
         <div *ngIf="f['CATEGORY'].errors['required']">Kategori wajib diisi.</div>

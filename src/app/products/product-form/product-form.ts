@@ -3,6 +3,7 @@ import { ProductService } from '../../Service/product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { CategoryProductService } from '../../Service/category-product.service';
 
 @Component({
   selector: 'app-product-form',
@@ -16,12 +17,14 @@ export class ProductForm {
   loading = false;
   id!: string;
   isAddMode!: boolean;
+  categories: any[] = [];
 
   constructor(
     private productService: ProductService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private categoryProductService: CategoryProductService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +37,8 @@ export class ProductForm {
       PRICE: ['', [Validators.required, Validators.min(0)]]
     });
 
+    this.getCategories();
+
     if (!this.isAddMode) {
         this.productService.getById(this.id)
             .pipe(first())
@@ -44,6 +49,20 @@ export class ProductForm {
   }
 
   get f() { return this.form.controls; }
+
+private getCategories(): void {
+    this.categoryProductService.getAll()
+      .pipe(first())
+      .subscribe({
+        next: (data) => {
+          this.categories = data; // Simpan data kategori ke variabel `categories`
+        },
+        error: (err) => {
+          alert('Gagal mengambil data kategori.');
+          console.error(err);
+        }
+      });
+  }
 
   onSubmit(): void {
     this.submitted = true;
