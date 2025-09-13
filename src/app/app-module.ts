@@ -13,14 +13,20 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { Product } from './product/product';
+import { Products } from './products/products';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Home } from './home/home';
+import { HttpClientModule } from '@angular/common/http';
+import { ProductForm } from './products/product-form/product-form';
+
 
 @NgModule({
   declarations: [
     App,
     SampleHalaman,
-    Product
+    Home,
+    ProductForm,
+    Products
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PaginationModule.forRoot(),
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

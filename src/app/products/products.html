@@ -26,18 +26,16 @@
               <th class="text-muted fw-semibold small">Nama Produk</th>
               <th class="text-muted fw-semibold small">Kategori</th>
               <th class="text-muted fw-semibold small">Harga</th>
-              <th class="text-muted fw-semibold small">Stok</th>
               <th class="text-muted fw-semibold small">Edit</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let p of products; let i = index">
               <td>{{ i + 1 }}</td>
-              <td>{{ p.code }}</td>
-              <td>{{ p.name }}</td>
-              <td>{{ p.category }}</td>
-              <td>{{ p.price | number }}</td>
-              <td>{{ p.stock }}</td>
+              <td>{{ p.PRODUCT_CODE }}</td>
+              <td>{{ p.PRODUCT_NAME }}</td>
+              <td>{{ p.CATEGORY }}</td>
+              <td>{{ p.PRICE | currency:'IDR':'symbol':'1.0-2' }}</td>
               <td>
                 <button type="button" class="btn btn-link">
                     <fa-icon [icon]="faPencil" class="me-1"></fa-icon>
