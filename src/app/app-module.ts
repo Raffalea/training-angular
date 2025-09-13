@@ -13,7 +13,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { Dashboard } from './dashboard/dashboard';
 import { Product } from './product/product';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -21,7 +20,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   declarations: [
     App,
     SampleHalaman,
-    Dashboard,
     Product
   ],
   imports: [
