@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class CategoryProductService {
   private apiUrl = 'https://localhost:7152/api/Categories'; // Ganti dengan URL API yang sesuai
 
   constructor(private http: HttpClient) { }

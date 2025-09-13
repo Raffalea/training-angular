@@ -19,6 +19,8 @@ import { Home } from './home/home';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductForm } from './products/product-form/product-form';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CategoryProduct} from './category-product/category-product';
+import { CategoryForm } from './category-product/category-form/category-form';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     SampleHalaman,
     Home,
     ProductForm,
-    Products
+    Products,
+    CategoryProduct,
+    CategoryForm
   ],
   imports: [
     BrowserModule,

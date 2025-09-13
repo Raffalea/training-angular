@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Tambah Category Baru</h2>
+
+  <form [formGroup]="form">
+
+    <!-- Kode Kategori -->
+    <div class="mb-3">
+      <label for="category_code" class="form-label">Kode Kategori</label>
+      <input type="text" id="category_code" formControlName="CATEGORY_CODE" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['CATEGORY_CODE'].errors }" />
+      <div *ngIf="submitted && f['CATEGORY_CODE'].errors" class="invalid-feedback">
+        <div *ngIf="f['CATEGORY_CODE'].errors['required']">Kode Kategori wajib diisi.</div>
+      </div>
+    </div>
+
+    <!-- Nama Kategori -->
+    <div class="mb-3">
+      <label for="category_name" class="form-label">Nama Kategori</label>
+      <input type="text" id="category_name" formControlName="CATEGORY_NAME" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['CATEGORY_NAME'].errors }" />
+      <div *ngIf="submitted && f['CATEGORY_NAME'].errors" class="invalid-feedback">
+        <div *ngIf="f['CATEGORY_NAME'].errors['required']">Nama Kategori wajib diisi.</div>
+      </div>
+    </div>
+
+    <!-- Tombol Aksi -->
+    <div class="d-flex justify-content-between mt-4">
+      <button type="button" [routerLink]="['/category']" [disabled]="loading" class="btn btn-secondary">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+        Kembali
+      </button>
+
+      <button type="button" (click)="onSubmit()" [disabled]="loading" class="btn btn-primary">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+        Simpan
+      </button>
+    </div>
+
+  </form>
+</div>
